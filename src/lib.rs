@@ -33,7 +33,7 @@ impl LateLintPass for Pass {
     fn check_expr(&mut self, cx: &LateContext, expr: &ast::Expr) {
         match expr.node {
             ast::ExprPath(None, ref path) => {
-                let name = path.segments.last().unwrap().identifier.name.as_str();
+                let name = path.segments.last().unwrap().name.as_str();
                 if name.deref() == "DUMMY_SP" {
                     cx.span_lint(DUMMY_SPAN, expr.span,
                                  "usage of 'DUMMY_SP' is discouraged");
